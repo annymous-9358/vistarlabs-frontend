@@ -1,0 +1,128 @@
+.portfolio-page {
+  min-height: 100vh;
+  padding: 5.5rem 2rem 4rem;
+  background: linear-gradient(180deg, #f5f8ff 0%, #ffffff 70%);
+}
+
+.portfolio-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.portfolio-header h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  margin: 0 0 0.8rem;
+  color: #1d2f4d;
+}
+
+.portfolio-header p {
+  margin: 0;
+  color: #51637a;
+  font-size: 1.05rem;
+}
+
+.portfolio-state {
+  text-align: center;
+  padding: 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.portfolio-state.error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.portfolio-state.empty {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.25rem;
+}
+
+.portfolio-card {
+  background: #ffffff;
+  border: 1px solid #e6edf7;
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: 0 10px 20px rgba(26, 54, 93, 0.06);
+}
+
+.portfolio-meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.7rem;
+}
+
+.portfolio-badge {
+  font-size: 0.78rem;
+  padding: 0.32rem 0.55rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: capitalize;
+  background: #e8f1ff;
+  color: #1e4da1;
+}
+
+.portfolio-badge.featured {
+  background: #fff4d6;
+  color: #9a6700;
+}
+
+.portfolio-card h2 {
+  margin: 0;
+  color: #1d2f4d;
+  font-size: 1.25rem;
+}
+
+.portfolio-card .description {
+  margin: 0.7rem 0 1rem;
+  color: #51637a;
+  line-height: 1.55;
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tech-item {
+  font-size: 0.76rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+.card-links {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.card-link {
+  text-decoration: none;
+  color: #1e4da1;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.card-link:hover {
+  color: #133878;
+}

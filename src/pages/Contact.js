@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { api, handleApiError } from '../services/api';
 import './Contact.css';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     name: '',
     email: '',
     company: '',
@@ -13,7 +14,14 @@ const Contact = () => {
     projectBudget: '',
     timeline: '',
     message: ''
+  };
+
+  const [formData, setFormData] = useState({
+    ...initialFormData
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [submitSuccess, setSubmitSuccess] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -22,11 +30,21 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const submitInquiry = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your inquiry! We will get back to you soon.');
+    setSubmitError('');
+    setSubmitSuccess('');
+    setIsSubmitting(true);
+
+    try {
+      await api.post('/api/inquiries', formData);
+      setSubmitSuccess('Thank you for your inquiry. Our team will contact you shortly.');
+      setFormData(initialFormData);
+    } catch (error) {
+      setSubmitError(handleApiError(error, 'Unable to submit your inquiry right now. Please try again later.'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -96,7 +114,9 @@ const Contact = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="contact-form-container"
             >
-              <form onSubmit={handleSubmit} className="contact-form">
+              <form onSubmit={submitInquiry} className="contact-form">
+                {submitSuccess && <p className="form-message success">{submitSuccess}</p>}
+                {submitError && <p className="form-message error">{submitError}</p>}
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="name">Full Name *</label>
@@ -215,8 +235,8 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
-                <button type="submit" className="submit-button">
-                  Send Message <Send size={20} />
+                <button type="submit" className="submit-button" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending...' : 'Send Message'} <Send size={20} />
                 </button>
               </form>
             </motion.div>

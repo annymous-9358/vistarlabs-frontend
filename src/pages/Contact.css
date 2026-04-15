@@ -109,6 +109,25 @@
   gap: 1.5rem;
 }
 
+.form-message {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.form-message.success {
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+}
+
+.form-message.error {
+  color: #991b1b;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+}
+
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -173,6 +192,13 @@
 .submit-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+}
+
+.submit-button:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.25);
 }
 
 @media (max-width: 768px) {
